@@ -16,6 +16,7 @@
     "react-terminal-ui": "^1.0.5",
     "reactstrap": "^9.1.9",
     "rimraf": "^5.0.0",
+    "terminal-in-react": "^4.3.1",
     "web-vitals": "^3.3.1",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",
