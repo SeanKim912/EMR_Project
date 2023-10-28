@@ -14,7 +14,16 @@ const TerminalController = () => {
                 commands={{
                     'open-google': () => window.open('google.com', '_blank'),
                     // showmsg: this.showMsg,
-                    popup: () => alert('Terminal in React')
+                    popup: () => alert('Terminal in React'),
+                    'type-text': (args, print, runCommand) => {
+                        const text = args.slice(1).join(' ');
+                        print('');
+                        for (let i = 0; i < text.length; i += 1) {
+                            setTimeout(() => {
+                                runCommand(`edit-line ${text.slice(0, i + 1)}`);
+                            }, 100 * i);
+                        }
+                    }
                 }}
                 descriptions={{
                     'open-google': 'opens google.com',
