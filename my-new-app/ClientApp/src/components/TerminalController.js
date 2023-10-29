@@ -1,5 +1,6 @@
 import React from 'react';
 import Terminal from 'terminal-in-react';
+import doubleMe from './Commands/test.js';
 
 const TerminalController = () => {
     // let showMsg = () => "Hey Hey Hey";
@@ -23,7 +24,8 @@ const TerminalController = () => {
                                 runCommand(`edit-line ${text.slice(0, i + 1)}`);
                             }, 100 * i);
                         }
-                    }
+                    },
+                    'double': doubleMe
                 }}
                 descriptions={{
                     'open-google': 'opens google.com',
