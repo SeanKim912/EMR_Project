@@ -27,6 +27,7 @@ const TerminalController = () => {
                     },
                     'double': doubleMe
                 }}
+                // Remember that args is an array, with args[0] being the command itself!
                 descriptions={{
                     'open-google': 'opens google.com',
                     // showmsg: 'shows a message',
