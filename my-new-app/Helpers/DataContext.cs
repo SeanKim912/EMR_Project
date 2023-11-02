@@ -1,6 +1,7 @@
-namespace my_new_app.Data;
+namespace WebApi.Helpers;
 
 using Microsoft.EntityFrameworkCore;
+using WebApi.Entities;
 
 public class DataContext : DbContext
 {
@@ -11,9 +12,10 @@ public class DataContext : DbContext
         Configuration = configuration;
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlite(Configuration.GetConnectionString("WebApiDatabase"));
+        // in memory database used for simplicity, change to a real db for production applications
+        options.UseInMemoryDatabase("TestDb");
     }
 
     public DbSet<User> Users { get; set; }
