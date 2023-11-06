@@ -1,3 +1,5 @@
+Entity Framework
+
 Developer notes:
 
 Frontend:
@@ -19,3 +21,4 @@ echo
 help
 show -> currently needs refactoring due to React class components
 edit-line -> edits the last line or a given line using the -l argument
+double -> double value
