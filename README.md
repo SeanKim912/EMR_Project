@@ -1,5 +1,8 @@
 Entity Framework
 
+sqlite database with entity framework core set up with the following method:
+https://jasonwatmore.com/post/2022/09/05/net-6-connect-to-sqlite-database-with-entity-framework-core
+
 Developer notes:
 
 Frontend:
