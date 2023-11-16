@@ -1,15 +1,15 @@
-namespace WebApi.Helpers;
-
 using Microsoft.EntityFrameworkCore;
-using WebApi.Entities;
 
-public class AppDbContext : DbContext
+namespace my_new_app.Data
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class AppDbContext : DbContext
     {
-        var connectionString = "server=localhost; user=root1;password=1234;database=test100";
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connectionString = "server=localhost; user=root1;password=1234;database=test100";
 
-        var serverVersion = new MySqlServerVersion(new Version(10, 4, 27));
-        optionsBuilder,.UseMySql(connetionString, serverVersion);
+            var serverVersion = new MySqlServerVersion(new Version(10, 4, 27));
+            optionsBuilder.UseMySql(connectionString, serverVersion);
+        }
     }
 }
