@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using my_new_app.Data;
+using WebApi.Helpers;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddControllersWithViews();
     var env = builder.Environment;
 
-    services.AddDbContext<AppDbContext>();
+    services.AddDbContext<DataContext>();
     services.AddCors();
     services.AddControllers().AddJsonOptions(x =>
     {
@@ -32,7 +33,7 @@ var app = builder.Build();
         .AllowAnyHeader());
 
     // global error handler
-    // app.UseMiddleware<ErrorHandlerMiddleware>();
+    app.UseMiddleware<ErrorHandlerMiddleware>();
 
     app.MapControllers();
 }
