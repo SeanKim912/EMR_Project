@@ -14,8 +14,8 @@ public class DataContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        // in memory database used for simplicity, change to a real db for production applications
-        options.UseInMemoryDatabase("TestDb");
+        // connect to sqlite databasef
+        options.UseSqlite(Configuration.GetConnectionString("WebApiDatabase"));
     }
 
     public DbSet<User> Users { get; set; }
