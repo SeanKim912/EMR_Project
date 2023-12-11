@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using WebApi.Helpers;
 using WebApi.Services;
 
+// These are for test console code below
+using System.Linq;
+using WebApi.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,7 +24,11 @@ var builder = WebApplication.CreateBuilder(args);
         x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+    // Console testing code
+    Console.WriteLine("BBBBBBBBBB " + services.GetType());
 }
+
 
 var app = builder.Build();
 
@@ -37,7 +45,6 @@ var app = builder.Build();
 
     app.MapControllers();
 }
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

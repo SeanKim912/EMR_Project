@@ -2,6 +2,7 @@ namespace WebApi.Helpers;
 
 using Microsoft.EntityFrameworkCore;
 using WebApi.Entities;
+using WebApi.Models;
 
 public class DataContext : DbContext
 {
@@ -19,4 +20,5 @@ public class DataContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Patient> Patients { get; set; }
 }
