@@ -1,6 +1,7 @@
 import React from 'react';
 import Terminal from 'terminal-in-react';
 import doubleMe from './Commands/test.js';
+import define from './Commands/define.js';
 
 const TerminalController = () => {
     // let showMsg = () => "Hey Hey Hey";
@@ -25,7 +26,8 @@ const TerminalController = () => {
                             }, 100 * i);
                         }
                     },
-                    'double': doubleMe
+                    'double': doubleMe,
+                    'define': define
                 }}
                 // Remember that args is an array, with args[0] being the command itself!
                 descriptions={{
@@ -33,7 +35,7 @@ const TerminalController = () => {
                     // showmsg: 'shows a message',
                     alert: 'alert', popup: 'alert'
                 }}
-                msg='You can write anything here. Example - Hello! My name is Foo and I like Bar.'
+                msg='Type your commands here. Use the Cheat Sheet to see what you can do!'
             />
         </>
     );
