@@ -1,6 +1,7 @@
 import React from 'react';
 import Terminal from 'terminal-in-react';
 import doubleMe from './Commands/test.js';
+import define from './Commands/define.js';
 
 const TerminalController = () => {
     // let showMsg = () => "Hey Hey Hey";
@@ -25,7 +26,8 @@ const TerminalController = () => {
                             }, 100 * i);
                         }
                     },
-                    'double': doubleMe
+                    'double': doubleMe,
+                    'define': define
                 }}
                 // Remember that args is an array, with args[0] being the command itself!
                 descriptions={{
