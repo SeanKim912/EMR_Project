@@ -4,8 +4,6 @@ import doubleMe from './Commands/test.js';
 import define from './Commands/define.js';
 
 const TerminalController = () => {
-    // let showMsg = () => "Hey Hey Hey";
-
     return (
         <>
             <Terminal
