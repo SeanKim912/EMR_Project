@@ -47,6 +47,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.MapGet("/users", async (DataContext db) => await db.Users.ToListAsync());
 
+app.MapPost("/user", async (DataContext db, User user) =>
+{
+    await db.Users.AddAsync(user);
+    await db.SaveChangesAsync();
+    return Results.Created($"/user/{user.Id}", user);
+});
+
+app.MapGet("/user/{id}", async (DataContext db, int id) => await db.Users.FindAsync(id));
 
 app.Run("http://localhost:4000");
