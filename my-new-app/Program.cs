@@ -1,36 +1,30 @@
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using WebApi.Helpers;
-using WebApi.Services;
-
-// These are for test console code below
-using System.Linq;
-using WebApi.Entities;
+using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Clinic.Helpers;
+using Clinic.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 {
     var services = builder.Services;
-    builder.Services.AddControllersWithViews();
     var env = builder.Environment;
-
-    services.AddDbContext<DataContext>();
+    var connectionString = builder.Configuration.GetConnectionString("Users") ?? "Data Source=Users.db";
+    builder.Services.AddControllersWithViews();
+    services.AddEndpointsApiExplorer();
+    services.AddSqlite<DataContext>(connectionString);
     services.AddCors();
-    services.AddControllers().AddJsonOptions(x =>
+    services.AddSwaggerGen(c =>
     {
-        x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-
-        x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Clinic API", Version = "v1" });
     });
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-    // Console testing code
-    Console.WriteLine("BBBBBBBBBB " + services.GetType());
 }
 
 
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Clinic API v1"));
 
 // configure HTTP request pipeline
 {
@@ -41,7 +35,7 @@ var app = builder.Build();
         .AllowAnyHeader());
 
     // global error handler
-    app.UseMiddleware<ErrorHandlerMiddleware>();
+    // app.UseMiddleware<ErrorHandlerMiddleware>();
 
     app.MapControllers();
 }
@@ -53,15 +47,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
 
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapFallbackToFile("index.html");
 
 app.Run("http://localhost:4000");

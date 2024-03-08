@@ -1,7 +1,8 @@
-namespace WebApi.Entities;
-
-public enum Role
+namespace Clinic.Models
 {
-    Admin,
-    User
+    public enum Role
+    {
+        Admin,
+        User
+    }
 }

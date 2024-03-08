@@ -1,24 +1,11 @@
-namespace WebApi.Helpers;
+namespace Clinic.Helpers;
 
 using Microsoft.EntityFrameworkCore;
-using WebApi.Entities;
-using WebApi.Models;
+using Clinic.Models;
 
 public class DataContext : DbContext
 {
-    protected readonly IConfiguration Configuration;
+    public DataContext(DbContextOptions options) : base(options) { }
 
-    public DataContext(IConfiguration configuration)
-    {
-        Configuration = configuration;
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-        // connect to sqlite databasef
-        options.UseSqlite(Configuration.GetConnectionString("WebApiDatabase"));
-    }
-
-    public DbSet<User> Users { get; set; }
-    public DbSet<Patient> Patients { get; set; }
+    public DbSet<User> Users { get; set; } = null!;
 }
